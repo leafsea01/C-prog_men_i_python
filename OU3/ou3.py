@@ -10,19 +10,31 @@ class boardgenerator(object):
 on = "X"
 off = "."
 def main(): 
-    col = 10
-    row = 10
-    board = generat_new_board(row,col)
-    random_board(board,row,col)
+    col = 20
+    row = 20
     
+    a = input("Enter (G) for glider (R) for random or S for Semaphore: ")
     board = generat_new_board(row,col)
-    creat_glider(board)
-    pint_rboard(board,row)
+
+    if(a == "G" or a == "g"):
+        creat_glider(board)
     
+    if(a == "R" or a == "r"):
+        random_board(board,row,col)
+
+    if(a == "S" or a == "s"):
+        loadSemaphore(board)
+
+    a = ""
+    while(a == ""):
+        next_generation(board,row,col)
+        update_board(board,row,col)
+        pint_rboard(board,row) 
+        print("for next generation press (enter): " )
+        a = input("to exit press any key: ")
+       
    
-    next_generation(board,row,col)
-    update_board(board,row,col)
-    pint_rboard(board,row)
+    
 
     
     
