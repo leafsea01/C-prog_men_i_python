@@ -1,8 +1,6 @@
 
+import re
 import random
-
-from cairo import RadialGradient
-
 
 class boardgenerator(object):
     __slots__ = ['current', 'next']
@@ -13,7 +11,7 @@ def main():
     col = 20
     row = 20
     
-    a = input("Enter (G) for glider (R) for random or S for Semaphore: ")
+    a = input("Enter (G) for glider or (R) for random or S for Semaphore or (C) for custum: ")
     board = generat_new_board(row,col)
 
     if(a == "G" or a == "g"):
@@ -25,11 +23,14 @@ def main():
     if(a == "S" or a == "s"):
         loadSemaphore(board)
 
+    if(a == "C" or a == "c"):
+        coustum(board,row,col)
     a = ""
+     
     while(a == ""):
         next_generation(board,row,col)
         update_board(board,row,col)
-        pint_rboard(board,row) 
+        pint_rboard(board,row)
         print("for next generation press (enter): " )
         a = input("to exit press any key: ")
        
@@ -71,6 +72,14 @@ def loadSemaphore(board):
     board.current[0][2] = on
     board.current[0][3] = on
 
+def coustum(board,row,col):
+    print("Enter posistion for alive cells borde size is (",row,"x",col,"): ",end= "" )
+    x = [int(x) for x in re.split(",| ",input())]
+
+    for i in range(0,len(x),2):
+        board.current[x[i]][x[i+1]] = on
+        
+
 def neighbors(board, row, col,r,c):
     neighbors = 0
     for i in range(3):
@@ -81,8 +90,7 @@ def neighbors(board, row, col,r,c):
                     
                     
                     neighbors = neighbors + 1
-    if neighbors >0:
-        print(neighbors)
+        
     return neighbors
 
 def next_generation(board,row,col):
@@ -109,4 +117,5 @@ def pint_rboard(board,row):
         print(board.current[i][:])
 
 
-main()
+if __name__ == "__main__":
+    main()

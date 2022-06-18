@@ -1,7 +1,6 @@
 # Jude competition
 # 3- 10 Juges 
-from typing import final
-from numpy import average
+
 
 
 def main():
@@ -10,10 +9,10 @@ def main():
     Judges = number_of_judges()
     Sccore = [[0] * Judges]
     Sccore = score_judges(Judges,Sccore)
-    print(Sccore)
+    
     load_scorre(Judges, Sccore)
     min,max, average = min_max(Judges, Sccore)
-    print(min,max,average)
+
     final_result(min,max,average,Judges)
 
 
@@ -42,15 +41,13 @@ def number_of_judges():
 def score_judges(Judges, Scorre):
 
     for i in range(0,Judges,1):
-        print(i)
-        print(Scorre)
         print("Scorre frome judge",i+1,": ",end="")
         Scorre[0][i] = float(input())
 
     return Scorre
 
 def load_scorre (Judges, scorre):
-    print("Scorre loaded:\n")
+    print("Scorre loaded:")
 
     for i in range(Judges):
         print("Judge", i+1,"sccore is:",scorre[0][i])
@@ -75,11 +72,11 @@ def min_max(Judges, scorre):
     return min,max,(average -min -max)/(Judges - 2)
 
 def final_result(min,max,average, Judges):
-    print("The final result are")
-    print("The average sccore is",average)
-    print("The min sccore was",min)
-    print("The max sccore was",max)
-    print("The number of judges was", Judges, "but only from", Judges - 2, "judges did the sccore counted in the final sccore")
+    print("The final result are : ",end="")
+    print("the average sccore is",average,end="")
+    print(", the min sccore was",min,end="")
+    print(", the max sccore was",max,end="")
+    print(", the number of judges was", Judges, "but only from", Judges - 2, "judges did the sccore counted in the final sccore")
 
 
 
